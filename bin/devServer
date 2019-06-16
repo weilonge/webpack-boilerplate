@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# trap ctrl-c and call ctrl_c()
+trap ctrl_c INT
+
+function INFO() {
+  echo "[INFO] $1"
+}
+
+function ERROR() {
+  echo "[ERROR] $1"
+}
+
+function ctrl_c() {
+  INFO "Terminating Static Web Server..."
+  kill $SERVER_PID
+}
+
+SERVER_PORT=8000
+if [ -n "$1" ]; then
+  SERVER_PORT=$1
+  INFO "Use the port ${SERVER_PORT} for dev server."
+else
+  INFO "Use the default port ${SERVER_PORT} for dev server."
+fi
+
+python -m SimpleHTTPServer ${SERVER_PORT} > /dev/null &
+SERVER_PID=$!
+
+sleep 1
+if ps -p $SERVER_PID > /dev/null; then
+  INFO "The dev server is running at the port ${SERVER_PORT}..."
+else
+  ERROR "The dev server can not be launched succesfully."
+  exit 1
+fi
+
+webpack --watch --mode=development
+

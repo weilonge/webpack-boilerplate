@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --mode=development",
+    "start": "./bin/devServer",
     "test": "jest --watch"
   },
   "author": "Sean Lee <weilonge@gmail.com> (https://weilonge.github.io/resume/)",
