@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "standard": "standard --verbose | snazzy",
+    "standard:fix": "standard --fix --verbose | snazzy",
     "build": "webpack --mode=development",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production",
     "start": "./bin/devServer",
     "test": "jest --watch"
   },

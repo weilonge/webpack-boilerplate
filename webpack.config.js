@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   output: {
     filename: 'main.js',
     libraryTarget: 'umd'
@@ -16,4 +16,16 @@ module.exports = {
       }
     ]
   }
+}
+
+module.exports = (env, argv) => {
+  if (argv.mode === 'development') {
+    config.devtool = 'source-map'
+  }
+
+  if (argv.mode === 'production') {
+    // Add some customized options.
+  }
+
+  return config
 }
