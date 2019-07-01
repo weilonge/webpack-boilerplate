@@ -1,5 +1,5 @@
-export default function hello() {
-  return 'world';
+export default function hello () {
+  return 'world'
 }
 
-console.log('Hello', hello());
+console.log('Hello', hello())
